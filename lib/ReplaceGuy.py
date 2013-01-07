@@ -11,9 +11,8 @@ class ReplaceGuy:
 	
 	def createReplacedFile(self, pathToFile): 
 		#thats dirty, im creating a new temp file, replacing the placeholders, then removing the old one
-		#i know, i should have done this in CopyGuy, but that would hurt the OO, the way it is now
+		#i know, i should have done this in CopyGuy, but that would hurt the OO, the way it is now (would?)
 		fh, abs_path = mkstemp()
-		print(pathToFile)
 		new_file = open(abs_path,'w')
 		old_file = open(pathToFile)
 		for line in old_file:
@@ -22,15 +21,13 @@ class ReplaceGuy:
 		close(fh)
 		old_file.close()
 		remove(pathToFile)
-		move(abs_path, pathToFile)
+		move(abs_path, self.replacePlaceHolders(pathToFile))
 
 	def replacePlaceHolders(self, line):
-		returnString = ""
+		returnString = line
 		arr = []
 		for index in self.configHolder.configs.keys():
 			if "{{"+index+"}}" in line:
-				returnString = line.replace("{{"+index+"}}", self.configHolder.configs[index])
-			else:
-				returnString = line
+				returnString = returnString.replace("{{"+index+"}}", self.configHolder.configs[index])
 		return returnString
 		

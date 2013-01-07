@@ -20,21 +20,21 @@ class CopyGuy:
 		for path, dirs, files in os.walk(src, topdown=True):
 			if path not in self.visited:
 				for di in dirs:
-					self.copy_file(join(path, di), join(dest,  di))
+					self.copy_file(join(path, di), join(dest,  replaceGuy.replacePlaceHolders(di)))
 				if not exists(dest):
 					os.makedirs(dest)
 				for fi in files:
 					new_path = join(path, fi)
 					shutil.copy(new_path, dest)
 					#to ignore the image files
-					if  (  
-						".js" in new_path or
+					if  (".js" in new_path or
 						".tpl" in new_path or
 						".html" in new_path or
 						".css" in new_path  or
 						".vm" in new_path or
 						".inc" in new_path or
-						".xml" in new_path):
+						".xml" in new_path or
+						".txt" in new_path):
 						replaceGuy.createReplacedFile(join(dest, fi))
 				self.visited.append(path)
 	
