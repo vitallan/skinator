@@ -6,7 +6,7 @@ Templatable file renderer.
 Usage
 -----
 
-Put files in `base` directory, run `skinator.py` e voilá: the files will be copied to the `outputs` directory.
+Put files in `base` directory, run `skinator.py` and voilá: the files will be copied to the `outputs` directory.
 
 Of course skinator doesn't simply copy files. It'll check the variables declared in the `config/base_config.ini`, get the base files and creates a copy of them in the `outputs` directory with the placeholders replaced. To make it work, put placeholders in the base files in this format `{{name_of_declared_variable_in_config}}`
 
