@@ -1,4 +1,4 @@
-Simple file renderer. Put files in the "base" directory, run skinator.py e voilá: the files will be copied in the outputs directory.
+Simple file renderer. Put files in the "base" directory, run skinator.py and voilá: the files will be copied in the outputs directory.
 
 Of course it doesn't just "copy" files. It'll check the variables declared in the config/base_config.ini, get the base files and creates a copy of them in the ouputs directory with the placeholders replaced. To make it work, put placeholders in the base files in this format {{name_of_declared_variable_in_config}}
 
