@@ -1,3 +1,4 @@
+import re
 from tempfile import mkstemp
 from shutil import move
 from os import remove, close
@@ -26,8 +27,10 @@ class ReplaceGuy:
 	def replacePlaceHolders(self, line):
 		returnString = line
 		arr = []
+		
 		for index in self.configHolder.configs.keys():
-			if "{{"+index+"}}" in line:
-				returnString = returnString.replace("{{"+index+"}}", self.configHolder.configs[index])
+			if "{{" + index + "}}" in line.lower(): #i needed a insensitive case replace, that's why i used regex :(
+				regex = re.compile(re.escape("{{"+index+"}}"), re.IGNORECASE)
+				returnString = regex.sub(self.configHolder.configs[index], returnString)
 		return returnString
 		
